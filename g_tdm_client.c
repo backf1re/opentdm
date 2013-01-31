@@ -517,6 +517,7 @@ void TDM_Disconnected (edict_t *ent)
 				//show a "ghost" player where the player was
 				ghost = G_Spawn ();
 				VectorCopy (ent->s.origin, ghost->s.origin);
+				VectorCopy (ent->s.origin, ghost->old_origin);
 				VectorCopy (ent->s.angles, ghost->s.angles);
 				ghost->s.effects = EF_SPHERETRANS;
 				ghost->s.modelindex = 255;

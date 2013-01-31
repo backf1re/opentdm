@@ -150,6 +150,7 @@ void ThrowGib (edict_t *self, char *gibname, int damage, int type)
 	gib->s.origin[0] = origin[0] + crandom() * size[0];
 	gib->s.origin[1] = origin[1] + crandom() * size[1];
 	gib->s.origin[2] = origin[2] + crandom() * size[2];
+	VectorCopy (gib->s.origin, gib->old_origin);
 
 	gi.setmodel (gib, gibname);
 	gib->solid = SOLID_NOT;
@@ -299,6 +300,7 @@ void ThrowDebris (edict_t *self, char *modelname, float speed, vec3_t origin)
 
 	chunk = G_Spawn();
 	VectorCopy (origin, chunk->s.origin);
+	VectorCopy (origin, chunk->old_origin);
 	gi.setmodel (chunk, modelname);
 	v[0] = 100 * crandom();
 	v[1] = 100 * crandom();
@@ -1457,6 +1459,7 @@ void teleporter_touch (edict_t *self, edict_t *other, cplane_t *plane, csurface_
 
 	VectorCopy (dest->s.origin, other->s.origin);
 	VectorCopy (dest->s.origin, other->s.old_origin);
+	VectorCopy (dest->s.origin, other->old_origin);
 	other->s.origin[2] += 10;
 
 	if (g_teleporter_nofreeze->value == 0)

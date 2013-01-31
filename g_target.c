@@ -305,6 +305,7 @@ void use_target_spawner (edict_t *self, edict_t *other, edict_t *activator)
 	ent = G_Spawn();
 	ent->classname = self->target;
 	VectorCopy (self->s.origin, ent->s.origin);
+	VectorCopy (self->s.origin, ent->old_origin);
 	VectorCopy (self->s.angles, ent->s.angles);
 	ED_CallSpawn (ent);
 	gi.linkentity (ent);

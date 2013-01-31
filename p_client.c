@@ -1076,6 +1076,8 @@ void CopyToBodyQue (edict_t *ent)
 	body->s = ent->s;
 	body->s.number = body - g_edicts;
 	body->s.event = EV_OTHER_TELEPORT;
+	VectorCopy (body->s.origin, body->s.old_origin);
+	VectorCopy (body->s.origin, body->old_origin);
 
 	body->svflags = ent->svflags;
 	VectorCopy (ent->mins, body->mins);
@@ -1311,6 +1313,7 @@ void PutClientInServer (edict_t *ent)
 		}
 
 		VectorCopy (ent->s.origin, ent->s.old_origin);
+		VectorCopy (ent->s.origin, ent->old_origin);
 
 		//we most link before killbox since it uses absmin/absmax
 		gi.linkentity (ent);

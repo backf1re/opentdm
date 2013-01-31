@@ -1773,6 +1773,9 @@ struct edict_s
 	//monsterinfo_t	monsterinfo;
 
 	enttype_t	enttype;
+
+	// hack for proper s.old_origin updates
+	vec3_t		old_origin;
 };
 
 //server features
